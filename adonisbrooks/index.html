@@ -1,0 +1,249 @@
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>our art project</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Work Sans:400,700" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+		<script type="text/javascript">
+		$(document).ready(function()
+		{
+			var i = 0;
+			var bg;
+
+			$('#foreground').click(function()
+			{
+				i++;
+				if (i < 8)
+				{
+					bg = "url(\'foreground" + i + ".png\')";
+					$(this).css('background-image', bg);
+				}
+				else if (i = 8)
+				{
+					$('#foreground').hide();
+				}
+			});
+
+			$('p').each(function()
+			{
+
+				var $clone = $(this).clone();
+				var r = Math.floor((Math.random() * 150) + 30);
+
+				//font size
+				$(this).css('font-size', r + 'px');
+
+				//text transform
+				if (r%2 == 0)
+				{
+					$(this).css('text-transform', 'lowercase');
+				}
+
+				//color scheme
+				var a, b;
+				if (r%5 == 0)
+				{
+					a = '391112';
+					b = 'fc3c2f';
+				}
+				else if (r%3 == 0)
+				{
+					a = '56535a';
+					b = '929093';
+				}
+				else if (r%2 == 0)
+				{
+					a = 'fab481';
+					b = 'ffeda0';
+				}
+
+				$(this).css({
+					'color': '#' + a,
+					'text-shadow': '5px 5px 0px #' + b
+				});
+
+				//import text
+				var key = $(this).text();
+				$(this).text(key.substring(0, key.indexOf(" ")));
+
+				$(this).click(function()
+				{
+					$(this).addClass('visited');
+					$('article').show();
+					$('article').html($clone);
+				});
+			});
+
+			$('article').click(function()
+			{
+				$(this).hide();
+			});
+		});
+		</script>
+		<style>
+		body
+		{
+			margin: 0px;
+			padding: 0px;
+			overflow-x: hidden;
+		}
+		#container
+		{
+			margin: 0 auto;
+			margin-top: 50px;
+			width: 90vw;
+			text-align: center;
+		}
+		#container p
+		{
+			display: inline;
+			cursor: pointer;
+			font-weight: bold;
+			font-family: 'Work Sans', 'Arial Black', sans-serif;
+			color: #ff8418;
+			text-shadow: 5px 5px 0px #d88557;
+            line-height: 75%;
+		}
+		#container p.visited
+		{
+			color: #59331e !important;
+		}
+		#container p:hover
+		{
+			cursor: pointer;
+		}
+		article
+		{
+			display: none;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			padding: 5px 10px;
+			background-color: #000;
+			color: #FFF;
+			width: 99vw;
+			min-height: 99vh;
+			cursor: url('cursor2.png'), auto;
+		}
+		article p
+		{
+			font-family: 'andale mono', monospace;
+			font-size: 28px;
+			color: #FFF;
+			line-height: 300%;
+			max-width: 700px;
+			cursor: url('cursor.png'), auto;
+		}
+		article p::selection
+		{
+			background-color: red;
+		}
+		#foreground
+		{
+			background-image: url('foreground0.png');
+			width: 1000px;
+			height: 800px;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1000;
+			cursor: url('cursor2.png'), auto;
+		}
+		</style>
+	</head>
+	<body>
+	<div id="foreground"></div>
+	<div id="container">
+		<p>Your black queer icons want to kill one another</p>
+
+		<p>My room:<br/>
+		A box, <br/>
+		cold in the way it embraces me. <br/>
+		I spit, <br/>
+		Defeat a small place,<br/>
+		I open the door,<br/>
+		It stays open.</p>
+
+
+		<p>A eulogy for a bad man:<br/>
+		I am writing this eulogy to you because no one has known you, and you know it. The end.<br/>
+		It was a hot shame how you treated death, anything that even slightly entertained the truths of your mortality shrunk you into nothing and caused you to open a spot on your molecule sized neck for the hook of your anxieties’ thumbs. And it was interesting watching you learn time and time again that prying its grip from your neck did not relinquish the feeling of drowning, it only reminded you that if you chose you could still run from the truth.</p>
+
+		<p>We hang our black children off the sides of cliffs and we make them dance like they are exceptional, and they are; but under these circumstances to what avail. </p>
+
+		<p>My friends are a community of writers, that consists of even smaller groups of drug addicts, perverts, and then sado-masochists. I am having a hard time distinguishing between love and tragedy, they are not.</p>
+
+		<p>In the winter my mother said she could tell a drunk when saw one, over thanks giving. The statement was quite obviously darted at me. Her smile did not make the statement any softer. I was not interested in convincing her that I was not like her over dinner.<br/>
+
+		Rather, I let the booze do its job: make me numb, worthy, sociable, and devilishly charismatic and present, so much so that I found myself replying: “as do I, mom”.</p>
+
+		<p>You act like you’ve never seen a dying man</p>
+
+		<p>My parents make sick look like hallelujah <br/>
+		And then filicidal thanksgiving <br/>
+		Where my mother would make a feast for death<br/>
+		And he and I would watch it rot <br/>
+		The turmoil that was in my heart is now the turmoil in my brain and loins <br/>
+		I am making sick look like some man’s bruised knuckles<br/>
+		Elegance has forgotten me <br/>
+		Under the the thumb of my worry <br/>
+		Will I ever find beauty again? </p>
+
+		<p>We were thirsty and had nothing to drink <br/>
+		So my mother went to the lemon tree <br/>
+		Picked more lemons than she could carry back <br/>
+		Sqouze them all with the tight between her thighs <br/>
+		And conjured up all the pain and pity I’ve ever known in myself </p>
+
+		<p>My father works at a warehouse where he shovels mail all day <br/>
+		Through the deep and empty noises <br/>
+		Of his lungs shattering </p>
+
+		<p>My mother meets him every night <br/>
+		She likes to drive <br/>
+		And you can tell because when she drives she drives like death will never catch her. </p>
+
+		<p>She is beauty <br/>
+		And he is love <br/>
+		And I am a cliche <br/>
+		Because it is only fitting that I die this way <br/>
+		I should have never picked up poetry <br/>
+		I should have disregarded art my entire life <br/>
+		It is only fitting that I die <br/>
+		Having been fulfilled by nothing </p>
+
+		<p>No one around me has once said that they r afraid to die <br/>
+		And here I am in tears<br/>
+		For us.</p>
+
+
+		<p>And I think it is my fault still for opening my heart so widely</p>
+
+
+		<p>And now I am but a mouse amongst the lion of my truth</p>
+
+
+		<p>I fear I won’t have the courage to die brilliantly</p>
+
+
+		<p>I am deeply uninterested in secrets. If there is a code that I have broken, which would lead to my execution or exile, get it over with. I have nothing left, but to be loud about being cheated out of my happiness.</p>
+
+
+		<p>It was an anxious dance thwarting the line between secret and private</p>
+
+
+		<p>My life has completely stopped in this moment from wanting you too much. I cannot think about much else right now.</p>
+
+
+		<p>I’m not asking for immortality I just ask you don’t send me to hell before I die. </p>
+
+		<p>Thought about leaving the house for the first time in 3 days, left spitefully in protest of myself, in deciding last minute I’d rather not die of hunger.</p>
+	</div>
+
+	<article>
+	</article>
+	</body>
+</html>
