@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>hudson</title>
+    
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#container img').hide();
+			var i = 0,
+				j = 0;
+
+			$('#container').mousemove(function(event){
+				var left = event.pageX,
+					top = event.pageY;
+
+				if (left%30 == i < 15)
+				{
+					if (i == 14)
+					{
+						$('header').css({
+							'z-index': '10000',
+							'top': '200px',
+							'left': '300px',
+							'font-size': '72px'
+						});
+					}
+
+					var factor = Math.floor(Math.random() * 15) + 25;
+
+					$('#container img:hidden:first').css({
+						'z-index': i,
+						'top': top,
+						'left': left,
+						'height': factor + '%',
+						'width': factor + '%',
+						'transform' : 'translate(-50%, -50%)',
+						'-webkit-transform' : 'translate(-50%, -50%)'
+					});
+					$('#container img:hidden:first').show();
+					i++;
+				}
+			});
+
+			$('#container img').click(function(){
+				if (i >= 15)
+				{
+					$(this).draggable();
+					j++;
+					$(this).css('z-index', 1000 + j);
+				}
+			});
+
+			$('header').click(function(){
+				if (i >= 15)
+				{
+					$('#container').addClass("bordered");
+					$('#container img').animate({width: '15%'}, 1000);
+					$('body').css({'background-image': 'url(images/background.png)'});
+				}
+			});
+
+			$('#book').click(function(){
+				// fix header
+				var offset = $('header').offset();
+				$('header').css({
+					'position' : 'absolute',
+					'top' : offset.top - 100, 
+					'left' : offset.left - 100
+				});
+				// open chapbook
+				$('#chapbook').show();
+			});
+
+			$(window).scroll(function(){
+			   var hT = $('.trigger').offset().top,
+			       hH = $('.trigger').outerHeight(),
+			       wS = $(this).scrollTop();
+			   if (wS > (hT+hH-$('.trigger').height())){
+					$('body').css({'background-image': 'none', 'background-color' : '#FFF'});
+					$('#chapbook').removeClass('bordered');
+			   }
+			});
+
+			var a = 1;
+			$('#chapbook img').each(function(){
+				if (a%2==0)
+				{
+					$(this).css({'margin-left' : '-5px'});
+					$(this).after("<div class=\'footer\'> pg" + (a/2) + "</div>");
+				}
+				a++;
+			});
+		});
+		</script>
+
+		<style type="text/css">
+		body
+		{
+			margin: 0px;
+			background-repeat: repeat;
+		}
+		#container img
+		{
+			position: absolute;
+			display: inline;
+			width: 200px;
+		}
+		#chapbook img
+		{
+			display: inline-block;
+			width: 49%;
+		}
+		img.front
+		{
+			z-index: 1000 !important;
+		}
+		header
+		{
+			position: fixed;
+			top: 30px;
+			left: 30px;
+			font-size: 36px;
+			color: #FFF;
+			font-style: italic;
+			font-weight: bold;
+			margin: 100px;
+			background-color: #000;
+		}
+		#container
+		{
+			width: 95vw;
+			height: 90vh; 
+			margin: 0 auto;
+			margin-top: 20px;
+			margin-bottom: 200px;
+			background-color: #FFF;
+		}
+		.bordered
+		{
+			border: 15px solid #73c0b7;
+		}
+
+		#openbook
+		{
+			height: 200px;
+			width: 150px;
+			position: relative;
+			perspective: 1000px;
+			margin: 75px;
+		}
+		#book
+		{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			transform-style: preserve-3d;
+			cursor: pointer;
+			transform: rotateY(25deg) rotateX(35deg);
+		}
+
+		#book:hover
+		{
+			transform: rotateY(25deg) rotateX(20deg);
+		}
+
+		#book figure
+		{
+			margin: 0;
+			display: block;
+			position: absolute;
+		}
+		figure.front
+		{
+			height: 200px;
+			width: 150px;
+
+			color: yellow;
+			background-color: #73c0b7;
+			text-align: center;
+			font-size: 25px;
+			font-weight: bold;
+		}
+		figure.left
+		{
+			width: 40px;
+			height: 200px;
+			left: 55px;
+			background-color: purple;
+			color: #FFF;
+			line-height:40px;
+			text-align: center;
+			font-weight: bold;
+			writing-mode: vertical-rl;
+			text-orientation: sideways;
+		}
+		figure.bottom
+		{
+			height: 40px;
+			width: 150px;
+			top: 80px;
+			background-color: red;
+			line-height: 40px;
+			text-align: center;
+			font-weight: bold;
+			color: white;
+		}
+		.front  { transform: rotateY(   0deg ) translateZ(  20px ); }
+		.left   { transform: rotateY( -90deg ) translateZ( 75px ); }
+		.bottom { transform: rotateX( -90deg ) translateZ( 100px ); }
+
+		/* chapbook */
+
+		#chapbook
+		{
+			display: none;
+			width: 95vw;
+			margin: 0 auto;
+			margin-top: 20px;
+			margin-bottom: 200px;
+			background-color: #FFF;
+			font-size: 18px;
+			font-family: 'andale mono', monospace;
+			color: #000;
+			text-align: center;
+		}
+		#chapbook .footer
+		{
+			width: 1031px;
+			line-height: 30px;
+			text-align: right;
+			border-top: 2px solid #000;
+			border-bottom: 2px solid #000;
+			padding: 0px 50px;
+			margin: 0 auto;
+			margin-bottom: 100px;
+		}
+		#chapbook .footer:before
+		{
+			content: 'Hudson';
+			float: left;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="container" class="photos">
+			<img src="images/0.JPG"/>
+			<img src="images/1.JPG"/>
+			<img src="images/2.JPG"/>
+			<img src="images/3.JPG"/>
+			<img src="images/4.png"/>
+			<img src="images/5.JPG"/>
+			<img src="images/6.JPG"/>
+			<img src="images/7.JPG"/>
+			<img src="images/8.JPG"/>
+			<img src="images/9.JPG"/>
+			<img src="images/10.JPG"/>
+			<img src="images/11.JPG"/>
+			<img src="images/12.JPG"/>
+			<img src="images/13.JPG"/>
+			<img src="images/14.JPG"/>
+		</div>
+
+		<header>hudson</header>
+
+		<div id="openbook">
+			<div id="book">
+				<figure class="front"><br/><br/>note<br/>book</figure>
+				<figure class="left">CLICKY CLICKY</figure>
+				<figure class="bottom">BY HUDSON</figure>
+			</div>
+		</div>
+
+		<div id="chapbook" class="bordered">
+			<img src="images/chapbook/1.1.png"/><img src="images/chapbook/1.2.png"/><br/><img src="images/chapbook/2.png" class="trigger"/><img src="images/chapbook/3.png"/><img src="images/chapbook/4.png"/><img src="images/chapbook/5.png"/><img src="images/chapbook/6.png"/><img src="images/chapbook/7.png"/><img src="images/chapbook/8.png"/><img src="images/chapbook/9.png"/><img src="images/chapbook/10.png"/><img src="images/chapbook/11.png"/><img src="images/chapbook/12.png"/><img src="images/chapbook/13.png"/><img src="images/chapbook/15.png"/><img src="images/chapbook/17.png"/><img src="images/chapbook/18.5.png"/><img src="images/chapbook/18.png"/><img src="images/chapbook/19.png"/><img src="images/chapbook/20.png"/><img src="images/chapbook/23.png"/><img src="images/chapbook/24.png"/><img src="images/chapbook/25.png"/><img src="images/chapbook/26.png"/><img src="images/chapbook/27.png"/><img src="images/chapbook/28.png"/><img src="images/chapbook/29.png"/><img src="images/chapbook/30.png"/><img src="images/chapbook/31.png"/><img src="images/chapbook/32.png"/>
+		</div>
+	</body>
+</html>
