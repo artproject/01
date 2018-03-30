@@ -3,18 +3,32 @@
 		<link rel="icon" href=""/>
 		<title>our art project</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Crimson Text" rel="stylesheet">
-
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script> <!-- local file -->
-
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 		<script type="text/javascript">
 		$(document).ready(buffering);
 
-		$(window).resize(function(){
-			$('.buffer').remove();
-			buffering();
-		});
+		var WebFontConfig = {
+		  google: { 
+		    families: ['Work+Sans:700']
+		  },
+		  active: function() {
+		  	$('.buffer').remove();
+		    buffering();
+		  },
+		  timeout: 2000
+		};
+
+		(function() {
+		  var wf = document.createElement('script');
+		  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+		      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		  wf.type = 'text/javascript';
+		  wf.async = 'true';
+		  var s = document.getElementsByTagName('script')[0];
+		  s.parentNode.insertBefore(wf, s);
+		})();
 
 		function buffering(){
 			var windowWidth = $(window).outerWidth();
@@ -48,15 +62,13 @@
 
 					//adjusting its width
 					var difference = totalWidth - windowWidth;
-					var newElementWidth = width - difference;
-					newDiv.width(newElementWidth - 31);
+					var newElementWidth = width - difference - 1;
+					newDiv.width(newElementWidth);
 					newDiv.height(height);
+					newDiv.css({padding: '0px'});
 					totalWidth = width;
 				}
 			});
-		}
-
-		$(document).ready(function(){
 
 			var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
 			var index = 0;
@@ -76,13 +88,15 @@
 					{
 						$(this).css('background-color', '#FFF');
 					}
-					// else
-					// {
-					// 	$(this).css('background-color', '#000');
-					// }
 				}
 			);
+		}
+
+		$(window).resize(function(){
+			$('.buffer').remove();
+			buffering();
 		});
+
 		</script>
 		<style type="text/css">
 		body
@@ -92,8 +106,7 @@
 		}
 		div
 		{
-			font-family: 'Arial Black';
-			font-size: 60px;
+			font-family: 'Work Sans', 'Arial Black', sans-serif;
 			background-color: #000;
 			color: #FFF;
 			padding: 0px 15px;
@@ -113,15 +126,15 @@
 	<body>
 		<div class="block">Contributors ></div>
 		<a href="/"><div>Nelli Astvatsatarian</div></a>
-		<a href="/"><div>hudson</div></a>
+		<a href="hudson/index.html"><div>hudson</div></a>
 		<a href="/"><div>Ayomide Odumosu</div></a>
 		<a href="/"><div>Sahar Sani</div></a>
 		<a href="/"><div>Sunny Young</div></a>
-		<a href="andrew%20kuznetsov/about.html"><div>Andrew Kuznetsov</div></a>
-		<a href="/"><div>Adonis Brooks</div></a>
+		<a href="andrewkuznetsov/about.html"><div>Andrew Kuznetsov</div></a>
+		<a href="adonisbrooks/index.html"><div>Adonis Brooks</div></a>
 		<a href="/"><div>Rebecca Plotkin</div></a>
 		<a href="/"><div>Chris Garcia</div></a>
-		<a href="/"><div>Natalie Raskin</div></a>
+		<a href="natalieraskin/index.html"><div>Natalie Raskin</div></a>
 		<a href="/"><div>Paige Hunter</div></a>
 		<a href="/"><div>Spenser Atlas</div></a>
 		<a href="/"><div>Sandy Capacio</div></a>
